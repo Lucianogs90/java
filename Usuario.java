@@ -15,6 +15,20 @@ public class Usuario{
         return this.amigos;
     }
 
+    public Usuario[] sugerirAmigos(Usuario user){
+        Usuario sugestao[] = new Usuario[10];
+        
+        int i = 0;
+        for (Usuario amigo : this.amigos) {
+            if(amigo != null && amigo.id != user.amigos[i].id){
+                sugestao[i] = user.amigos[i];
+            }
+            i++;
+        }
+
+        return sugestao;
+    }
+
     public static void main(String[] args) {
         Usuario p1 = new Usuario(0, "Alice");
         Usuario p2 = new Usuario(1, "Bob");
@@ -28,10 +42,8 @@ public class Usuario{
         p2.amigos[0] = p4;
         p2.amigos[1] = p5;
 
-        int i = 0;
-        while(p1.getAmigos()[i].id != p2.getAmigos()[i].id){
-
-        }
+        System.out.println(p1.sugerirAmigos(p2)[1].nome);
+        
     }
 
 }
