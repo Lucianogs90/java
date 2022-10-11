@@ -1,9 +1,9 @@
 
 public class RedeSocial{
-    public class Usuario{
+    public static class Usuario{
         public int id;
         public String nome;
-        public Usuario[] amigos;
+        public Usuario[] amigos = new Usuario[10];
 
      
         public Usuario(int id, String nome){
@@ -12,22 +12,29 @@ public class RedeSocial{
         }
     }
 
-    Usuario usuario = new Usuario(0, "Alice");
+    public Usuario user;
+
+    public Usuario getUsuarioById(int id){
+        if(this.user.id == id){
+            return user;
+        } else{
+            return null;
+        }
+    }
+
+    public Usuario addUsuario(int id, String nome){
+        this.user = new Usuario(id, nome);
+        return user;
+    }
     
-    public void addAmigo(int id, String nome){
+    public void addAmigo(int idUsuario, int idAmigo, String nome){
 
-        Usuario novoUsuario = new Usuario(id, nome);
-        Usuario novosAmigos[] = new Usuario[this.usuario.amigos.length + 1];
+        Usuario novoUsuario = new Usuario(idAmigo, nome);
+        Usuario novosAmigos[] = new Usuario[this.getUsuarioById(idUsuario).amigos.length + 1];
 
-        if(this.usuario.amigos[this.usuario.amigos.length] == null){
-            this.usuario.amigos[this.usuario.amigos.length] = novoUsuario;
-        }else{
-            for(int i = 0; i < this.usuario.amigos.length; i++){
-                novosAmigos[i] = this.usuario.amigos[i];
-            }
-            novosAmigos[this.usuario.amigos.length + 1] = novoUsuario;
-
-            this.usuario.amigos = novosAmigos;
+        int i = 0;
+        while(this.getUsuarioById(idUsuario).amigos[i] == null){
+            
         }
     }
 
@@ -37,8 +44,14 @@ public class RedeSocial{
 
     public static void main(String[] args) {
         RedeSocial rd = new RedeSocial();
-        rd.usuario = new Usuario(0, "Alice");
+        rd.user = new Usuario(0, "Alice");
 
+        rd.addAmigo(0, 1, "Bob");
+        rd.addAmigo(0, 2, "Dan");
+        rd.addAmigo(1, 3, "Eve");
+        rd.addAmigo(1, 3, "Charlie");
+
+        System.out.println(rd.user);
     }
 
 }
