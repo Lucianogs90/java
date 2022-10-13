@@ -42,6 +42,7 @@ public class Usuario{
         p2.amigos[0] = p4;
         p2.amigos[1] = p5;
 
+        System.out.println(p1.sugerirAmigos(p2)[0].nome);
         System.out.println(p1.sugerirAmigos(p2)[1].nome);
         
     }
